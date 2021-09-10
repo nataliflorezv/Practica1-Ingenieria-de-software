@@ -9,10 +9,11 @@
   @method('PUT')
     <label for="" class="form-label">Documento</label>
     <input type="text" name="documento" value=''>
+    <button type="submit" class="btn btn-primary">Ingresar</button>
 </form>
 
-<!-- $documento=basename($_FILES['documento']['name']);
- -->
+<!-- $documento=basename($_FILES['documento']['name']); -->
+
 <a href="{{route('patients.show', 4)}}" class="btn btn-secondary">Ingresar</a>
 
 @endsection

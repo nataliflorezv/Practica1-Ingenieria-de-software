@@ -21,6 +21,7 @@ class CreateControlsTable extends Migration
             $table->string('Minimo2',20);
             $table->string('Maximo2',20);
             $table->string('Resultado2',20);
+            $table->timestamps();
         });
     }
 

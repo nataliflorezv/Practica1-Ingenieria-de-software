@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h1 style='color:#16A085'>CONSULTA MASIVA DE PACIENTES</h1>
+    <h1 style='color:#16A085' align='center'>CONSULTA MASIVA DE PACIENTES</h1>
     <br></br>
     <table class="table table-striped table-hover" id="patients">
         <thead>

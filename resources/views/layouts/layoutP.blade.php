@@ -34,7 +34,7 @@
               <a class="nav-link active" aria-current="page" href="/controls">Consultar control de calidad</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/controls/nuevo">Ingresar control de calidad</a>
+              <a class="nav-link active" aria-current="page" href="{{route('controls.create')}}">Ingresar control de calidad</a>
             </li>
           </ul>
         </div>

@@ -7,9 +7,12 @@
 @section('content')
 
 @php
-    $contador = 0;
+    $contador1 = 0;
+    $contador2 = 0;
     $Rd1=0;
     $Rd2=0;
+    $R1=0;
+    $R2=0;
     $Rm1=0;
     $Rm2=0;
     $M1=0;
@@ -35,50 +38,80 @@
     </thead>
     <tbody>
     @foreach($controls as $control)
-        <tr>
+        <tr>  
         <th>{{ $control->Fecha}}</th>
         <th>{{ $control->Minimo1}}</th>
         <th>{{ $control->Maximo1}}</th>
-        <th>{{ $control->Resultado1}}</th>
+
+        @if ($control->Resultado1 < $control->Maximo1)  
+            @if($control->Resultado1 < $control->Minimo1)
+            <th style='color:#E74C3C'>{{ $control->Resultado1}}</th>
+            @else
+            <th>{{ $control->Resultado1}}</th>
+            @endif
+        @else
+            <th style='color:#E74C3C'>{{ $control->Resultado1}}</th>
+
+        @endif
+
         <th>{{ $control->Minimo2}}</th>
         <th>{{ $control->Maximo2}}</th>
-        <th>{{ $control->Resultado2}}</th>
-        </tr>
 
+        @if ($control->Resultado2 < $control->Maximo2)  
+            @if($control->Resultado2 < $control->Minimo2)
+            <th style='color:#E74C3C'>{{ $control->Resultado2}}</th>
+            @else
+            <th>{{ $control->Resultado2}}</th>
+            @endif
+        @else
+            <th style='color:#E74C3C'>{{ $control->Resultado2}}</th>
+
+        @endif
+        </tr>
         <?php $Rm1 = $control->Resultado1 +$Rm1;?>
         <?php $Rm2 = $control->Resultado2+$Rm2;?>
-        <?php $Rd1 = ($Rd1-$control->Resultado1)*($Rd1-$control->Resultado1) ;?>
-        <?php $Rd2 = ($Rd2-$control->Resultado2)*($Rd2-$control->Resultado2);?>
-        <?php $contador = $contador++?>
+        <?php $contador1 = $contador1+1?>
 
     @endforeach
-    @if($contador > 0)
-        <?php $M1 = $Rm1/$contador;?>
-        <?php $M2 = $Rm2/$contador;?>
-        <?php $D1 = pow($Rd1/$contador, 1/2) ;?>
-        <?php $D2 = pow($Rd2/$contador, 1/2) ;?>
 
+    @if($contador1 > 0)
+        <?php $M1 = $Rm1/$contador1;?>
+        <?php $M2 = $Rm2/$contador1;?>
     @else
         <?php $M1 = 0;?>
         <?php $M2 = 0;?>
-        <?php $D1 = 0 ;?>
-        <?php $D2 = 0 ;?>
     @endif
 
+    @foreach($controls as $control)
+        <?php $R1 = pow($control->Resultado1-$M1,2);?>
+        <?php $R2 = pow($control->Resultado2-$M2,2);?>
+        <?php $Rd1 = $Rd1+$R1;?>
+        <?php $Rd2 = $Rd2+$R2;?>
+        <?php $contador2 = $contador2+1?>
+
+
+    @endforeach
+
+    @if($contador2 > 0)
+        <?php $D1 = sqrt($Rd1/($contador2-1));?>
+        <?php $D2 = sqrt($Rd2/($contador2-1));?>
+    @else
+        <?php $D1 = 0;?>
+        <?php $D2 = 0;?>
+    @endif
 
     </tbody>
     </table>
 
     <br></br>
-    <h1 style='color:#16A085'>CONSULTA CONTROL DE CALIDAD</h1>
-<br></br>
+    <h2 style='color:#16A085'>Estadísticas</h2>
 <table class="table table-striped table-hover" id="control">
     <thead>
         <tr>
-            <th scope="col">DESVIACION1</th>
-            <th scope="col">MEDIA1</th>
-            <th scope="col">DESVIACION2</th>
-            <th scope="col">MEDIA2</th>
+            <th scope="col">DESVIACION NIVEL1</th>
+            <th scope="col">MEDIA NIVEL1</th>
+            <th scope="col">DESVIACION NIVEL2</th>
+            <th scope="col">MEDIA NIVEL2</th>
 
         </tr>
     </thead>
