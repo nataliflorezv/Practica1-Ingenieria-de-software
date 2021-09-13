@@ -7,18 +7,57 @@
 @section('content')
 
 @php
-    $contador1 = 0;
+    $contadorT1 = 0;
     $contador2 = 0;
     $Rd1=0;
     $Rd2=0;
     $R1=0;
+    $R=0;
+    $RmT1=0;
+    $RmT2=0;
+    $MT1=0;
+    $MT2=0;
+    $DT1=0;
+    $DT2=0;
+
+    $contadorC1 = 0;
+    $contadorC2 = 0;
+    $Rd1=0;
+    $Rd2=0;
+    $R1=0;
     $R2=0;
-    $Rm1=0;
-    $Rm2=0;
-    $M1=0;
-    $M2=0;
-    $D1=0;
-    $D2=0;
+    $RmC1=0;
+    $RmC2=0;
+    $MC1=0;
+    $MC2=0;
+    $DC1=0;
+    $DC2=0;
+
+    $contadorH1 = 0;
+    $contadorH2 = 0;
+    $Rd1=0;
+    $Rd2=0;
+    $R1=0;
+    $R2=0;
+    $RmH1=0;
+    $RmH2=0;
+    $MH1=0;
+    $MH2=0;
+    $DH1=0;
+    $DH2=0;
+
+    $contadorL1 = 0;
+    $contadorL2 = 0;
+    $Rd1=0;
+    $Rd2=0;
+    $R1=0;
+    $R2=0;
+    $RmL1=0;
+    $RmL2=0;
+    $ML1=0;
+    $ML2=0;
+    $DL1=0;
+    $DL2=0;
 @endphp
 
 <br></br>
@@ -28,6 +67,7 @@
     <thead>
         <tr>
             <th scope="col">FECHA</th>
+            <th scope="col">PRUEBA</th>
             <th scope="col">MINIMO1</th>
             <th scope="col">MAXIMO1</th>
             <th scope="col">RESULTADO1</th>
@@ -40,6 +80,7 @@
     @foreach($controls as $control)
         <tr>  
         <th>{{ $control->Fecha}}</th>
+        <th>{{ $control->Prueba}}</th>
         <th>{{ $control->Minimo1}}</th>
         <th>{{ $control->Maximo1}}</th>
 
@@ -67,24 +108,72 @@
             <th style='color:#E74C3C'>{{ $control->Resultado2}}</th>
 
         @endif
+        @if ($control->Prueba)=="Triglicéridos"
         </tr>
-        <?php $Rm1 = $control->Resultado1 +$Rm1;?>
-        <?php $Rm2 = $control->Resultado2+$Rm2;?>
-        <?php $contador1 = $contador1+1?>
+        <?php $RmT1 = $control->Resultado1 +$RmT1;?>
+        <?php $RmT2 = $control->Resultado2+$RmT2;?>
+        <?php $contadorT1 = $contadorT1+1?>
+
+        @elif ($control->Prueba)=="Colesterol"
+        </tr>
+        <?php $RmC1 = $control->Resultado1 +$RmC1;?>
+        <?php $RmC2 = $control->Resultado2+$RmC2;?>
+        <?php $contadorC1 = $contadorC1+1?>
+
+        @elif ($control->Prueba)=="HDL"
+        </tr>
+        <?php $RmH1 = $control->Resultado1 +$RmH1;?>
+        <?php $RmH2 = $control->Resultado2+$RmH2;?>
+        <?php $contadorH1 = $contadorH1+1?>
+
+        @elif ($control->Prueba)=="LDL"
+        </tr>
+        <?php $RmL1 = $control->Resultado1 +$RmL1;?>
+        <?php $RmL2 = $control->Resultado2+$RmL2;?>
+        <?php $contadorL1 = $contadorL1+1?>
+
+        @endif
+
+
 
     @endforeach
 
-    @if($contador1 > 0)
-        <?php $M1 = $Rm1/$contador1;?>
-        <?php $M2 = $Rm2/$contador1;?>
+    @if($contadorT1 > 0)
+        <?php $MT1 = $RmT1/$contadorT1;?>
+        <?php $MT2 = $RmT2/$contadorT1;?>
     @else
-        <?php $M1 = 0;?>
-        <?php $M2 = 0;?>
+        <?php $MT1 = 0;?>
+        <?php $MT2 = 0;?>
     @endif
 
+    @if($contadorC1 > 0)
+        <?php $MC1 = $RmC1/$contadorC1;?>
+        <?php $MC2 = $RmC2/$contadorC1;?>
+    @else
+        <?php $MC1 = 0;?>
+        <?php $MC2 = 0;?>
+    @endif
+
+    @if($contadorH1 > 0)
+        <?php $MH1 = $RmH1/$contadorH1;?>
+        <?php $MH2 = $RmH2/$contadorH1;?>
+    @else
+        <?php $MH1 = 0;?>
+        <?php $MH2 = 0;?>
+    @endif
+
+    @if($contadorL1 > 0)
+        <?php $ML1 = $RmL1/$contadorL1;?>
+        <?php $ML2 = $RmL2/$contadorL1;?>
+    @else
+        <?php $ML1 = 0;?>
+        <?php $ML2 = 0;?>
+    @endif
+    
+
     @foreach($controls as $control)
-        <?php $R1 = pow($control->Resultado1-$M1,2);?>
-        <?php $R2 = pow($control->Resultado2-$M2,2);?>
+        <?php $R1 = pow($control->Resultado1-$MT1,2);?>
+        <?php $R2 = pow($control->Resultado2-$MT2,2);?>
         <?php $Rd1 = $Rd1+$R1;?>
         <?php $Rd2 = $Rd2+$R2;?>
         <?php $contador2 = $contador2+1?>
@@ -92,7 +181,7 @@
 
     @endforeach
 
-    @if($contador2 > 0)
+    @if($contador2 > 1)
         <?php $D1 = sqrt($Rd1/($contador2-1));?>
         <?php $D2 = sqrt($Rd2/($contador2-1));?>
     @else
@@ -108,6 +197,7 @@
 <table class="table table-striped table-hover" id="control">
     <thead>
         <tr>
+            <th scope="col">PRUEBA</th>
             <th scope="col">DESVIACION NIVEL1</th>
             <th scope="col">MEDIA NIVEL1</th>
             <th scope="col">DESVIACION NIVEL2</th>
@@ -117,12 +207,33 @@
     </thead>
     <tbody>
         <tr>
-        <th>{{ $D1}}</th>
-        <th>{{ $M1}}</th>
-        <th>{{ $D2}}</th>
-        <th>{{ $M2}}</th>
+        <th>Triglicéridos</th>
+        <th>{{ $DT1}}</th>
+        <th>{{ $MT1}}</th>
+        <th>{{ $DT2}}</th>
+        <th>{{ $MT2}}</th>
         </tr>
-
+        <tr>
+        <th>Colesterol</th>
+        <th>{{ $DC1}}</th>
+        <th>{{ $MC1}}</th>
+        <th>{{ $DC2}}</th>
+        <th>{{ $MC2}}</th>
+        </tr>
+        <tr>
+        <th>HDL</th>
+        <th>{{ $DH1}}</th>
+        <th>{{ $MH1}}</th>
+        <th>{{ $DH2}}</th>
+        <th>{{ $MH2}}</th>
+        </tr>
+        <tr>
+        <th>LDL</th>
+        <th>{{ $DL1}}</th>
+        <th>{{ $ML1}}</th>
+        <th>{{ $DL2}}</th>
+        <th>{{ $ML2}}</th>
+        </tr>
     </tbody>
     </table>  
     <a class="btn btn-secondary" href="{{route('controls.create')}}">NUEVO CONTROL</a>

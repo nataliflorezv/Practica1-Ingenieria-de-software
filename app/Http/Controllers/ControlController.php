@@ -39,6 +39,7 @@ class ControlController extends Controller
         $controls = new Control();
 
         $controls->Fecha = $request->get('Fecha');
+        $controls->Prueba = $request->get('Prueba');
         $controls->Minimo1 = $request->get('Minimo1');
         $controls->Maximo1 = $request->get('Maximo1');
         $controls->Resultado1 = $request->get('Resultado1');

@@ -15,6 +15,7 @@ class CreateControlsTable extends Migration
     {
         Schema::create('controls', function (Blueprint $table) {
             $table->string('Fecha',30);
+            $table->string('Prueba',30);
             $table->string('Minimo1',20);
             $table->string('Maximo1',20);
             $table->string('Resultado1',20);
