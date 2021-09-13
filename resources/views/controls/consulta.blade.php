@@ -8,11 +8,11 @@
 
 @php
     $contadorT1 = 0;
-    $contador2 = 0;
-    $Rd1=0;
-    $Rd2=0;
-    $R1=0;
-    $R=0;
+    $contadorT2 = 0;
+    $RTd1=0;
+    $RTd2=0;
+    $RT1=0;
+    $RT2=0;
     $RmT1=0;
     $RmT2=0;
     $MT1=0;
@@ -22,10 +22,10 @@
 
     $contadorC1 = 0;
     $contadorC2 = 0;
-    $Rd1=0;
-    $Rd2=0;
-    $R1=0;
-    $R2=0;
+    $RCd1=0;
+    $RCd2=0;
+    $RC1=0;
+    $RC2=0;
     $RmC1=0;
     $RmC2=0;
     $MC1=0;
@@ -35,10 +35,10 @@
 
     $contadorH1 = 0;
     $contadorH2 = 0;
-    $Rd1=0;
-    $Rd2=0;
-    $R1=0;
-    $R2=0;
+    $RHd1=0;
+    $RHd2=0;
+    $RH1=0;
+    $RH2=0;
     $RmH1=0;
     $RmH2=0;
     $MH1=0;
@@ -48,10 +48,10 @@
 
     $contadorL1 = 0;
     $contadorL2 = 0;
-    $Rd1=0;
-    $Rd2=0;
-    $R1=0;
-    $R2=0;
+    $RLd1=0;
+    $RLd2=0;
+    $RL1=0;
+    $RL2=0;
     $RmL1=0;
     $RmL2=0;
     $ML1=0;
@@ -108,26 +108,27 @@
             <th style='color:#E74C3C'>{{ $control->Resultado2}}</th>
 
         @endif
-        @if ($control->Prueba)=="Triglicéridos"
-        </tr>
+        
+        @if ($control->Prueba =="Triglicéridos")   
+           
         <?php $RmT1 = $control->Resultado1 +$RmT1;?>
         <?php $RmT2 = $control->Resultado2+$RmT2;?>
         <?php $contadorT1 = $contadorT1+1?>
 
-        @elif ($control->Prueba)=="Colesterol"
-        </tr>
+        @elseif ($control->Prueba =="Colesterol")
+        
         <?php $RmC1 = $control->Resultado1 +$RmC1;?>
         <?php $RmC2 = $control->Resultado2+$RmC2;?>
         <?php $contadorC1 = $contadorC1+1?>
 
-        @elif ($control->Prueba)=="HDL"
-        </tr>
+        @elseif ($control->Prueba =="HDL")
+        
         <?php $RmH1 = $control->Resultado1 +$RmH1;?>
         <?php $RmH2 = $control->Resultado2+$RmH2;?>
         <?php $contadorH1 = $contadorH1+1?>
 
-        @elif ($control->Prueba)=="LDL"
-        </tr>
+        @elseif ($control->Prueba =="LDL")
+
         <?php $RmL1 = $control->Resultado1 +$RmL1;?>
         <?php $RmL2 = $control->Resultado2+$RmL2;?>
         <?php $contadorL1 = $contadorL1+1?>
@@ -172,21 +173,69 @@
     
 
     @foreach($controls as $control)
-        <?php $R1 = pow($control->Resultado1-$MT1,2);?>
-        <?php $R2 = pow($control->Resultado2-$MT2,2);?>
-        <?php $Rd1 = $Rd1+$R1;?>
-        <?php $Rd2 = $Rd2+$R2;?>
-        <?php $contador2 = $contador2+1?>
+    
+    @if ($control->Prueba =="Triglicéridos")
+        <?php $RT1 = pow($control->Resultado1-$MT1,2);?>
+        <?php $RT2 = pow($control->Resultado2-$MT2,2);?>
+        <?php $RTd1 = $RTd1+$RT1;?>
+        <?php $RTd2 = $RTd2+$RT2;?>
+        <?php $contadorT2 = $contadorT2+1?>
 
+    @elseif ($control->Prueba =="Colesterol")
+        <?php $RC1 = pow($control->Resultado1-$MC1,2);?>
+        <?php $RC2 = pow($control->Resultado2-$MC2,2);?>
+        <?php $RCd1 = $RCd1+$RC1;?>
+        <?php $RCd2 = $RCd2+$RC2;?>
+        <?php $contadorC2 = $contadorC2+1?>
+    
+    @elseif ($control->Prueba =="HDL")
+        <?php $RH1 = pow($control->Resultado1-$MH1,2);?>
+        <?php $RH2 = pow($control->Resultado2-$MH2,2);?>
+        <?php $RHd1 = $RHd1+$RH1;?>
+        <?php $RHd2 = $RHd2+$RH2;?>
+        <?php $contadorH2 = $contadorH2+1?>
+    
+    @elseif ($control->Prueba =="LDL")
+        <?php $RL1 = pow($control->Resultado1-$ML1,2);?>
+        <?php $RL2 = pow($control->Resultado2-$ML2,2);?>
+        <?php $RLd1 = $RLd1+$RL1;?>
+        <?php $RLd2 = $RLd2+$RL2;?>
+        <?php $contadorL2 = $contadorL2+1?>
 
+    @endif
     @endforeach
+   
 
-    @if($contador2 > 1)
-        <?php $D1 = sqrt($Rd1/($contador2-1));?>
-        <?php $D2 = sqrt($Rd2/($contador2-1));?>
+    @if($contadorT2 > 1)
+        <?php $DT1 = sqrt($RTd1/($contadorT2-1));?>
+        <?php $DT2 = sqrt($RTd2/($contadorT2-1));?>
     @else
-        <?php $D1 = 0;?>
-        <?php $D2 = 0;?>
+        <?php $DT1 = 0;?>
+        <?php $DT2 = 0;?>
+    @endif
+
+    @if($contadorC2 > 1)
+        <?php $DC1 = sqrt($RCd1/($contadorC2-1));?>
+        <?php $DC2 = sqrt($RCd2/($contadorC2-1));?>
+    @else
+        <?php $DC1 = 0;?>
+        <?php $DC2 = 0;?>
+    @endif
+
+    @if($contadorH2 > 1)
+        <?php $DH1 = sqrt($RHd1/($contadorH2-1));?>
+        <?php $DH2 = sqrt($RHd2/($contadorH2-1));?>
+    @else
+        <?php $DH1 = 0;?>
+        <?php $DH2 = 0;?>
+    @endif
+
+    @if($contadorL2 > 1)
+        <?php $DL1 = sqrt($RLd1/($contadorL2-1));?>
+        <?php $DL2 = sqrt($RLd2/($contadorL2-1));?>
+    @else
+        <?php $DL1 = 0;?>
+        <?php $DL2 = 0;?>
     @endif
 
     </tbody>
