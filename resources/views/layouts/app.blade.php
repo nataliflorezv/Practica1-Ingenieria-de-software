@@ -30,8 +30,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+            <img src="{{asset('imagenes/medico2.png')}}"  alt="" width="50" height="50" class="d-inline-block align-text-top"></img>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'LIS') }}
+                    Laboratorio VIDA
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
