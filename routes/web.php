@@ -19,6 +19,7 @@ Route::get('/', HomeController::class);
 Route::resource('patients', 'App\Http\Controllers\PatientController');
 Route::resource('login', 'App\Http\Controllers\LoginController');
 Route::resource('controls', 'App\Http\Controllers\ControlController');
+Route::resource('paciente', 'App\Http\Controllers\PacienteController');
 
 
 /* Route::get('patients/create', [PatientsController::class , 'create']);

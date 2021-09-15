@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\login;
+use App\Models\Patient;
+use Exception;
 
-
-class LoginController extends Controller
+class PacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,12 +13,9 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $logins = login::all(); 
-        return view('login.loginbacteriologo')->with('logins',$logins);
-        
+    {   
+        return view('paciente.ver');
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +24,8 @@ class LoginController extends Controller
      */
     public function create()
     {
-        
+        return view('paciente.loginpaciente');
+
     }
 
     /**
@@ -38,15 +36,11 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $logins = new login();
-
-        $logins->Documento = $request->get('Documento');
-        $logins->Contraseña = $request->get('Contraseña');
-
-
-        $logins->save();
-
-        return redirect('/login');
+        $Documento = $request->get('Documento');
+        $id = $request->get('id');
+        $patients = Patient::all();
+        $patient = Patient::find($id);
+        return view('paciente.ver', ['id'=>$id,'patient'=>$patient,'patients'=>$patients]);
     }
 
     /**
@@ -55,21 +49,23 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        
+        $patient = Patient::find($id);
+        return view('paciente.ingreso2')->with('patient',$patient);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($Documento)
+    public function edit($id)
     {
-        $login = Patient::find($Documento); 
-        return view('login.verificacion')->with('login',$login);
+        
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,17 +74,9 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $documento)
+    public function update(Request $request, $id)
     {
-        $logins = login::find($documento);
-
-        $logins->Documento = $request->get('Documento');
-        $logins->Contraseña = $request->get('Contraseña');
-        
-
-        $logins->save();
-
-        return redirect('/loginbacteriologo');
+       
     }
 
     /**
@@ -99,6 +87,6 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+       
     }
 }

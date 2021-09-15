@@ -7,22 +7,21 @@
   <br></br>
       <h2 style='color:#16A085'>Ingrese con su documento y contraseña</h2>
       <br></br>
-      <form  action='' method="POST">
+      <form  method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
-          <label for="" class="form-label">Documento</label>
-          <input type="text" class="form-control" id="documento" name="documento" value="">
+          <label for="" class="form-label">Email</label>
+          <input type="email" class="form-control" id="Documento" name="Documento" value="">
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Contraseña</label>
-          <input type="text" class="form-control" id="contraseña" name="contraseña" value="">
+          <input type="password" class="form-control" id="Contraseña" name="Contraseña" value="">
         </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
       </form>
-      <a href="/patients" class="btn btn-secondary">Ingresar</a>
   </div>
 </div>
 </header>
-@endsection
 
-    
+@endsection  
