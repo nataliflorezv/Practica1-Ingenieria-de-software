@@ -5,16 +5,12 @@
 <br></br>
 <form action="/controls" method="POST">
     @csrf
-    <div class="mb-3">
-      <label for="" class="form-label">Fecha</label>
-      <input type="text" class="form-control" id="Fecha" name="Fecha">
-    </div>
     <h6>Prueba</h6>
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Prueba</label>
             <select class="form-select"  id="Prueba" name='Prueba'>
               <option selected>Elige la prueba</option>
-              <option value="Colesterol Total">Colesterol Total</option>
+              <option value="Colesterol">Colesterol</option>
               <option value="Triglicéridos">Triglicéridos</option>
               <option value="HDL">HDL</option>
               <option value="LDL">LDL</option>

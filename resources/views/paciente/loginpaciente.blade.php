@@ -7,9 +7,7 @@
 <form action='/paciente' method="POST">
   @csrf
     <label for="" class="form-label">Documento</label>
-    <input type="text" name="documento" value=''>
-    <label for="" class="form-label">Codigo</label>
-    <input type="text" name="id" value=''>
+    <input type="text" name="Documento" value=''>
     <button type="submit" class="btn btn-primary">Ingresar</button>
 </form>
 

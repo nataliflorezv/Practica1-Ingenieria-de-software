@@ -66,20 +66,20 @@
 <table class="table table-striped table-hover" id="controls">
     <thead>
         <tr>
-            <th scope="col">FECHA</th>
-            <th scope="col">PRUEBA</th>
-            <th scope="col">MINIMO1</th>
-            <th scope="col">MAXIMO1</th>
-            <th scope="col">RESULTADO1</th>
-            <th scope="col">MINIMO2</th>
-            <th scope="col">MAXIMO2</th>
-            <th scope="col">RESULTADO2</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Prueba</th>
+            <th scope="col">Min1</th>
+            <th scope="col">Max1</th>
+            <th scope="col">Resultado1</th>
+            <th scope="col">Min2</th>
+            <th scope="col">Max2</th>
+            <th scope="col">Resultado2</th>
         </tr>
     </thead>
     <tbody>
     @foreach($controls as $control)
         <tr>  
-        <th>{{ $control->Fecha}}</th>
+        <th>{{ $control->created_at}}</th>
         <th>{{ $control->Prueba}}</th>
         <th>{{ $control->Minimo1}}</th>
         <th>{{ $control->Maximo1}}</th>
@@ -109,24 +109,28 @@
 
         @endif
         
-        @if ($control->Prueba =="Triglicéridos")   
+        @if ($control->Prueba == 'Triglicéridos')   
            
         <?php $RmT1 = $control->Resultado1 +$RmT1;?>
         <?php $RmT2 = $control->Resultado2+$RmT2;?>
         <?php $contadorT1 = $contadorT1+1?>
 
-        @elseif ($control->Prueba =="Colesterol total")
+        @endif
+
+        @if ($control->Prueba == 'Colesterol')
         
         <?php $RmC1 = $control->Resultado1 +$RmC1;?>
         <?php $RmC2 = $control->Resultado2+$RmC2;?>
         <?php $contadorC1 = $contadorC1+1?>
 
-        @elseif ($control->Prueba =="HDL")
+        @endif
+
+        @if ($control->Prueba =="HDL")
         
         <?php $RmH1 = $control->Resultado1 +$RmH1;?>
         <?php $RmH2 = $control->Resultado2+$RmH2;?>
         <?php $contadorH1 = $contadorH1+1?>
-
+        
         @elseif ($control->Prueba =="LDL")
 
         <?php $RmL1 = $control->Resultado1 +$RmL1;?>
@@ -140,32 +144,32 @@
     @endforeach
 
     @if($contadorT1 > 0)
-        <?php $MT1 = $RmT1/$contadorT1;?>
-        <?php $MT2 = $RmT2/$contadorT1;?>
+        <?php $MT1 = round($RmT1/$contadorT1,3);?>
+        <?php $MT2 = round($RmT2/$contadorT1,3);?>
     @else
         <?php $MT1 = 0;?>
         <?php $MT2 = 0;?>
     @endif
 
     @if($contadorC1 > 0)
-        <?php $MC1 = $RmC1/$contadorC1;?>
-        <?php $MC2 = $RmC2/$contadorC1;?>
+        <?php $MC1 = round($RmC1/$contadorC1,3);?>
+        <?php $MC2 = round($RmC2/$contadorC1,3);?>
     @else
         <?php $MC1 = 0;?>
         <?php $MC2 = 0;?>
     @endif
 
     @if($contadorH1 > 0)
-        <?php $MH1 = $RmH1/$contadorH1;?>
-        <?php $MH2 = $RmH2/$contadorH1;?>
+        <?php $MH1 = round($RmH1/$contadorH1,3);?>
+        <?php $MH2 = round($RmH2/$contadorH1,3);?>
     @else
         <?php $MH1 = 0;?>
         <?php $MH2 = 0;?>
     @endif
 
     @if($contadorL1 > 0)
-        <?php $ML1 = $RmL1/$contadorL1;?>
-        <?php $ML2 = $RmL2/$contadorL1;?>
+        <?php $ML1 = round($RmL1/$contadorL1,3);?>
+        <?php $ML2 = round($RmL2/$contadorL1,3);?>
     @else
         <?php $ML1 = 0;?>
         <?php $ML2 = 0;?>
@@ -175,31 +179,31 @@
     @foreach($controls as $control)
     
     @if ($control->Prueba =="Triglicéridos")
-        <?php $RT1 = pow($control->Resultado1-$MT1,2);?>
-        <?php $RT2 = pow($control->Resultado2-$MT2,2);?>
-        <?php $RTd1 = $RTd1+$RT1;?>
-        <?php $RTd2 = $RTd2+$RT2;?>
+        <?php $RT1 = round(pow($control->Resultado1-$MT1,2),3);?>
+        <?php $RT2 = round(pow($control->Resultado2-$MT2,2),3);?>
+        <?php $RTd1 = round(($RTd1+$RT1),3);?>
+        <?php $RTd2 = round(($RTd2+$RT2),3);?>
         <?php $contadorT2 = $contadorT2+1?>
 
-    @elseif ($control->Prueba =="Colesterol total")
-        <?php $RC1 = pow($control->Resultado1-$MC1,2);?>
-        <?php $RC2 = pow($control->Resultado2-$MC2,2);?>
-        <?php $RCd1 = $RCd1+$RC1;?>
-        <?php $RCd2 = $RCd2+$RC2;?>
+    @elseif ($control->Prueba =="Colesterol")
+        <?php $RC1 = round(pow($control->Resultado1-$MC1,2),3);?>
+        <?php $RC2 = round(pow($control->Resultado2-$MC2,2),3);?>
+        <?php $RCd1 = round($RCd1+$RC1,3);?>
+        <?php $RCd2 =round($RCd2+$RC2,3);?>
         <?php $contadorC2 = $contadorC2+1?>
     
     @elseif ($control->Prueba =="HDL")
-        <?php $RH1 = pow($control->Resultado1-$MH1,2);?>
-        <?php $RH2 = pow($control->Resultado2-$MH2,2);?>
-        <?php $RHd1 = $RHd1+$RH1;?>
-        <?php $RHd2 = $RHd2+$RH2;?>
+        <?php $RH1 = round(pow($control->Resultado1-$MH1,2),3);?>
+        <?php $RH2 = round(pow($control->Resultado2-$MH2,2),3);?>
+        <?php $RHd1 = round($RHd1+$RH1,3);?>
+        <?php $RHd2 = round($RHd2+$RH2,3);?>
         <?php $contadorH2 = $contadorH2+1?>
     
     @elseif ($control->Prueba =="LDL")
-        <?php $RL1 = pow($control->Resultado1-$ML1,2);?>
-        <?php $RL2 = pow($control->Resultado2-$ML2,2);?>
-        <?php $RLd1 = $RLd1+$RL1;?>
-        <?php $RLd2 = $RLd2+$RL2;?>
+        <?php $RL1 = round(pow($control->Resultado1-$ML1,2),3);?>
+        <?php $RL2 = round(pow($control->Resultado2-$ML2,2),3);?>
+        <?php $RLd1 = round($RLd1+$RL1,3);?>
+        <?php $RLd2 = round($RLd2+$RL2,3);?>
         <?php $contadorL2 = $contadorL2+1?>
 
     @endif
@@ -207,35 +211,54 @@
    
 
     @if($contadorT2 > 1)
-        <?php $DT1 = sqrt($RTd1/($contadorT2-1));?>
-        <?php $DT2 = sqrt($RTd2/($contadorT2-1));?>
+        <?php $DT1 = round(sqrt($RTd1/($contadorT2-1)),3);?>
+        <?php $DT2 = round(sqrt($RTd2/($contadorT2-1)),3);?>
+        <?php $CT1 = round($DT1/$MT1,3);?>
+        <?php $CT2 = round($DT2/$MT2,3);?>
+
     @else
         <?php $DT1 = 0;?>
         <?php $DT2 = 0;?>
+        <?php $CT1 = 0;?>
+        <?php $CT2 = 0;?>
+        
+
     @endif
 
     @if($contadorC2 > 1)
-        <?php $DC1 = sqrt($RCd1/($contadorC2-1));?>
-        <?php $DC2 = sqrt($RCd2/($contadorC2-1));?>
+        <?php $DC1 = round(sqrt($RCd1/($contadorC2-1)),3);?>
+        <?php $DC2 = round(sqrt($RCd2/($contadorC2-1)),3);?>
+        <?php $CC1 = round($DC1/$MC1,3);?>
+        <?php $CC2 = round($DC2/$MC2,3);?>
     @else
         <?php $DC1 = 0;?>
         <?php $DC2 = 0;?>
+        <?php $CC1 = 0;?>
+        <?php $CC2 = 0;?>
     @endif
 
     @if($contadorH2 > 1)
-        <?php $DH1 = sqrt($RHd1/($contadorH2-1));?>
-        <?php $DH2 = sqrt($RHd2/($contadorH2-1));?>
+        <?php $DH1 = round(sqrt($RHd1/($contadorH2-1)),3);?>
+        <?php $DH2 = round(sqrt($RHd2/($contadorH2-1)),3);?>
+        <?php $CH1 = round($DH1/$MH1,3);?>
+        <?php $CH2 = round($DH2/$MH2,3);?>
     @else
         <?php $DH1 = 0;?>
         <?php $DH2 = 0;?>
+        <?php $CH1 = 0;?>
+        <?php $CH2 = 0;?>
     @endif
 
     @if($contadorL2 > 1)
-        <?php $DL1 = sqrt($RLd1/($contadorL2-1));?>
-        <?php $DL2 = sqrt($RLd2/($contadorL2-1));?>
+        <?php $DL1 = round(sqrt($RLd1/($contadorL2-1)),3);?>
+        <?php $DL2 = round(sqrt($RLd2/($contadorL2-1)),3);?>
+        <?php $CL1 = round($DL1/$ML1,3);?>
+        <?php $CL2 = round($DL2/$ML2,3);?>
     @else
         <?php $DL1 = 0;?>
         <?php $DL2 = 0;?>
+        <?php $CL1 = 0;?>
+        <?php $CL2 = 0;?>
     @endif
 
     </tbody>
@@ -246,12 +269,13 @@
 <table class="table table-striped table-hover" id="control">
     <thead>
         <tr>
-            <th scope="col">PRUEBA</th>
-            <th scope="col">DESVIACION NIVEL1</th>
-            <th scope="col">MEDIA NIVEL1</th>
-            <th scope="col">DESVIACION NIVEL2</th>
-            <th scope="col">MEDIA NIVEL2</th>
-
+            <th scope="col">Prueba</th>
+            <th scope="col">Desviacion1</th>
+            <th scope="col">Media1</th>
+            <th scope="col">Variacion1</th>
+            <th scope="col">Desviacion2</th>
+            <th scope="col">Media2</th>
+            <th scope="col">Variacion2</th>
         </tr>
     </thead>
     <tbody>
@@ -259,29 +283,38 @@
         <th>Triglicéridos</th>
         <th>{{ $DT1}}</th>
         <th>{{ $MT1}}</th>
+        <th>{{ $CT1}}</th>
         <th>{{ $DT2}}</th>
         <th>{{ $MT2}}</th>
+        <th>{{ $CT2}}</th>
         </tr>
+
         <tr>
         <th>Colesterol</th>
         <th>{{ $DC1}}</th>
         <th>{{ $MC1}}</th>
+        <th>{{ $CC1}}</th>
         <th>{{ $DC2}}</th>
         <th>{{ $MC2}}</th>
+        <th>{{ $CC2}}</th>
         </tr>
         <tr>
         <th>HDL</th>
         <th>{{ $DH1}}</th>
         <th>{{ $MH1}}</th>
-        <th>{{ $DH2}}</th>
+        <th>{{ $CH1}}</th>
+        <th>{{ $DC2}}</th>
         <th>{{ $MH2}}</th>
+        <th>{{ $CH2}}</th>
         </tr>
         <tr>
         <th>LDL</th>
         <th>{{ $DL1}}</th>
         <th>{{ $ML1}}</th>
+        <th>{{ $CL1}}</th>
         <th>{{ $DL2}}</th>
         <th>{{ $ML2}}</th>
+        <th>{{ $CL2}}</th>
         </tr>
     </tbody>
     </table>  
@@ -290,26 +323,19 @@
 @endsection
 
 @section('js')
-
-    <a href="#" onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();"
-    >Salir</a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
       <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-    $('#patients').DataTable({
+    $('#controls').DataTable({
         "lengthMenu" : [[5,10,50,-1] , [5,10,50,"All"]],
 
         "language": {
         processing:     "Procesando...",
         search:         "Buscar:",
-        lengthMenu:    "Mostrar _MENU_ pacientes",
-        info:           "Mostrando _START_ a _END_ de _TOTAL_ pacientes",
+        lengthMenu:    "Mostrar _MENU_ controles",
+        info:           "Mostrando _START_ a _END_ de _TOTAL_ controles",
         infoEmpty:      "Mostrando registros del 0 a 0 de un total de 0 registros",
         infoFiltered:   "(filtrado de un total de _MAX_ registros)",
         infoPostFix:    "",

@@ -36,11 +36,20 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
+        
         $Documento = $request->get('Documento');
-        $id = $request->get('id');
         $patients = Patient::all();
-        $patient = Patient::find($id);
-        return view('paciente.ver', ['id'=>$id,'patient'=>$patient,'patients'=>$patients]);
+        {
+        foreach ($patients as $patient)
+            if ($patient->documento == $Documento)
+            {
+                return view('paciente.ver', ['Documento'=>$Documento,'patient'=>$patient,'patients'=>$patients]);
+            }
+            if ($patient->documento != $Documento){
+                // $Documento = NULL;
+                return view('paciente.no');
+            }
+        }    
     }
 
     /**
