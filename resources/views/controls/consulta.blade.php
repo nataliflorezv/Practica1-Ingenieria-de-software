@@ -290,6 +290,13 @@
 @endsection
 
 @section('js')
+
+    <a href="#" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"
+    >Salir</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
       <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
       <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
       <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>

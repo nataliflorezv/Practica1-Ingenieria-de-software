@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,20 @@ Route::get('/', HomeController::class);
 Route::resource('patients', 'App\Http\Controllers\PatientController');
 Route::resource('login', 'App\Http\Controllers\LoginController');
 Route::resource('controls', 'App\Http\Controllers\ControlController');
+
+Route::post('login', function() {
+    $credentials = request()-> only('email','password');
+
+
+    if (Auth::attempt($credentials)){
+
+        request()->session()->regenerate();
+
+        return 'Entraste';
+    }
+
+    return redirect('login');
+});
 
 
 /* Route::get('patients/create', [PatientsController::class , 'create']);
@@ -44,3 +59,6 @@ Route::get('patients/{name}/{age?}', function ($name , $age=null) {
         return "<h1>Paciente $name.</h1>";
     }
 }); */
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
