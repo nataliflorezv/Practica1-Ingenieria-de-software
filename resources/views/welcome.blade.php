@@ -9,7 +9,7 @@
     <div class='row' style='height:600px; background-color:#CBF2FF'>
         <div class="col-12  text-center align-middle">
         <p class="text-start"> 
-        <h3 style='color:#0E2D99'> OLA LOKS</h3>
+        <h3 style='color:#0E2D99'> ¿Eres paciente?</h3>
             <h5 style='color:#031554'>Consulta tu resultado en linea</h5>
             <img src="{{asset('imagenes/perfil.png')}}"  alt="" width="120" height="120" ></img>
     
