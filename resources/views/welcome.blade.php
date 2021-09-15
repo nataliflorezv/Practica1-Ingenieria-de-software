@@ -16,7 +16,7 @@
             <img src="{{asset('imagenes/perfil.png')}}"  alt="" width="120" height="120" ></img>
     
           
-            <a class="btn btn-primary" href="/login/loginpaciente">Ingresar</a>     </p>  
+            <a class="btn btn-primary" href="{{route('paciente.create')}}">Ingresar</a>     </p>  
 
 <br></br>
             

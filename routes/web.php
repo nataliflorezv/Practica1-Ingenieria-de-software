@@ -20,6 +20,7 @@ Route::get('/', HomeController::class);
 Route::resource('patients', 'App\Http\Controllers\PatientController');
 Route::resource('login', 'App\Http\Controllers\LoginController');
 Route::resource('controls', 'App\Http\Controllers\ControlController');
+Route::resource('paciente', 'App\Http\Controllers\PacienteController');
 
 Route::post('login', function() {
     $credentials = request()-> only('email','password');

@@ -115,7 +115,7 @@
         <?php $RmT2 = $control->Resultado2+$RmT2;?>
         <?php $contadorT1 = $contadorT1+1?>
 
-        @elseif ($control->Prueba =="Colesterol")
+        @elseif ($control->Prueba =="Colesterol total")
         
         <?php $RmC1 = $control->Resultado1 +$RmC1;?>
         <?php $RmC2 = $control->Resultado2+$RmC2;?>
