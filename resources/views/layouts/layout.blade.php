@@ -26,10 +26,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Quiénes somos?</a>
+            <a class="nav-link active" aria-current="page" href="/nosotros">Quiénes somos?</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contáctenos</a>
+            <a class="nav-link" href="/nosotros/create">Contáctenos</a>
           </li>
         </ul>
       </div>
