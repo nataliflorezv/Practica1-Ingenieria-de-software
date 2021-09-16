@@ -1,61 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Práctica 1 - Ingeniería de sotfware
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+En este proyecto se realiza un sistema de información para laboratorio clínico, en pocas palabras consta de un sotfware donde se puede consultar y almacenar información de pacientes que se realizaron un examen para consultar su perfil lipídico.
 
-## About Laravel
+Este sotfware tiene dos frentes uno de consulta de pacientes, que es exclusivamente para los pacientes y otra enfocado al bacteriólogo que será descrito posteriormente.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Frente para pacientes
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+En este enfoque del sotfware los pacientes tienen la posibilidad de consultar los resultados de los examenes enfocados al perfil lipídico. Esto se podrá consultar por medio del documento de identidad de cada paciente, si el usuario no está registrado en la base de datos saldrá un mensaje de aviso notificandole que no se encontró ningun resultado. Caso contrario cuando el acceso con el documento de identidad es satisfactorio, este le mostrará toda la información de dicho paciente, además de los resultados del perfil lipídico. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Bacteriólogo
 
-## Learning Laravel
+En esta sección del sotfware el bacteriólogo tiene que realizar su respectivo proceso de logueo utilizando un correo y una contraseña, en caso tal de que no cuente con un email con el que pueda iniciar sesión podrá realizar el respectivo registro, suministrando su nombre, email y su contraseña con su respectiva confirmación. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Posterior a esto, el bacteriólogo tendra el acceso a 4 opciones: 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Ingreso de pacientes
+- Consulta de pacientes 
+- Ingreso de control de calidad
+- Consulta de control de calidad 
 
-## Laravel Sponsors
+## Ingreso de pacientes
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+El bacteriólogo podrá realizar el registro de nuevos pacientes donde se pueda ingresar toda la información referente a este, tales como el nombre, email, documento de identidad, sexo, edad, EPS y el perfil lipídico.
 
-### Premium Partners
+## Consulta de pacientes
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+En esta parte el bacteriólogo podrá consultar cualquier paciente que esté registrado en la base de datos, donde podrá ver el codigo unico que identifica a cada paciente, documento de identidad, nombres, apellidos y tendrá opción de poder revisar los resultados asociados a cada paciente con la ayuda de un link o enlace. Además tendrá la posibilidad de modificar los parametros existentes de cada paciente.
 
-## Contributing
+## Ingreso de control de calidad
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Acá el bacteriólogo puede realizar el ingreso de controles de calidad, para los diferentes tipos del perfil lipídico ya sea de trigliceridos, Colesterol total, HDL y LDL.
 
-## Code of Conduct
+## Consulta de control de calidad
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Por último, el bacteriologo tendrá la posibilidad de realizar consultas de todos los controles de calidad ingresados, donde los valores que no estén dentro del rango establecido se verán reflejados en la tabla de color rojo. Además de esto, tambien se mostrará todas las estadisticas de los controles de calidad para cada perfil lipídico.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+El software contará con un botón de salir que permitirá que el bacteriólogo pueda cerrar sesión y lo redigirá a la pantalla de inicio.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
